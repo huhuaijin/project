@@ -2,9 +2,70 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
     <title></title>
 </head>
 <body>
+    <div ng-app="myApp">
+        <div ng-controller="myCtrl">{{name}} {{lastname}}</div>
+        <div ng-controller="data">
+            <input type="text" ng-model="text"/>输入的值为：{{text}} {{lastname | uppercase}}
+            <p ng-repeat="x in names | orderBy:'height'">
+               姓名：{{x.name}}  身高：{{x.height}}
+            </p>
+            <input type="text" ng-model="fname"/>
+            <input type="text" ng-model="lname"/>
+            <div>{{and()}}</div>
+            <h1>{{theTime}}</h1>
+            <h2>255的16进制为{{hex}}</h2>
+        </div>
 
+        <div ng-controller="url">{{urls}}</div>
+
+        <div ng-controller="customersCtrl">
+            <ul>
+                <li ng-repeat="x in names">
+                    {{ x.Name + ', ' + x.Country }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp',[]);
+        app.controller('myCtrl',function($scope){
+            $scope.name='huhuaijin';
+        });
+        app.service('ABC',function(){
+           this.myFunc = function(x){
+               return x.toString(16);
+           }
+        });
+        app.controller('data',function($scope,$rootScope,$interval,ABC){
+            $scope.text = '请输入';
+            $scope.names=[
+                {name:'huhuaijin', height:'170'},
+                {name:'陈晚', height:'152'},
+                {name:'张三', height:'198'},
+                {name:'小平', height:'165'}
+            ];
+            $rootScope.lastname='liyu';
+            $scope.fname='hu';
+            $scope.lname='huaijin';
+            $scope.and=function(){
+                return $scope.fname + ' ' + $scope.lname;
+            };
+            $scope.theTime = new Date().toLocaleTimeString();
+            $interval(function(){
+                $scope.theTime = new Date().toLocaleTimeString();
+            },1000);
+            $scope.hex = ABC.myFunc(255);
+        });
+        app.controller('url',function($scope,$location){
+            $scope.urls = $location.absUrl();
+        });
+        app.controller('customersCtrl', function($scope, $http) {
+            $http.get("package.json").success(function (response) {$scope.names = response.records;});
+        });
+    </script>
 </body>
 </html>
