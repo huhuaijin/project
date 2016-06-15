@@ -18,6 +18,17 @@
             <div>{{and()}}</div>
             <h1>{{theTime}}</h1>
             <h2>255的16进制为{{hex}}</h2>
+            <select ng-model="selectedName" ng-options="g for g in nname"></select>
+            <select name="" id="e">
+                <option value="" ng-repeat="ss in nname">{{ss}}</option>
+            </select>
+            <select name="" id="s" ng-model="selectbar">
+                <option value="{{y.name}}" ng-repeat="y in nav">{{y.name}}</option>
+            </select>
+            <p>选择的是：{{selectbar}}</p>
+            <select name="" ng-model="selectedName" ng-options="g.name for g in tim"></select>
+            <p>选择的是：{{selectedName.name}}</p>
+            <p>选择的是url：{{selectedName.url}}</p>
         </div>
 
         <div ng-controller="url">{{urls}}</div>
@@ -59,6 +70,9 @@
                 $scope.theTime = new Date().toLocaleTimeString();
             },1000);
             $scope.hex = ABC.myFunc(255);
+            $scope.nname=['google','taobao','jindong'];
+            $scope.nav=[{name:'google',url:'www.google.com'},{name:'baidu',url:'www.baidu.com'}];
+            $scope.tim=[{name:'google',url:'www.google.com'},{name:'baidu',url:'www.baidu.com'}];
         });
         app.controller('url',function($scope,$location){
             $scope.urls = $location.absUrl();
