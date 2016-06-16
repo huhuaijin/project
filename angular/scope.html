@@ -39,8 +39,54 @@
                     {{ x.Name + ', ' + x.Country }}
                 </li>
             </ul>
-        </div>
+            <table border="1">
+                <tr ng-repeat="xi in tims | orderBy: 'City'">
+                    <td ng-if="$odd" style="background-color: #f3f3f3;">{{xi.Name}}</td>
+                    <td ng-if="$even" >{{xi.Name}}</td>
+                    <td ng-if="$odd" style="background-color: #f3f3f3">{{xi.City}}</td>
+                    <td ng-if="$even" >{{xi.City}}</td>
+                </tr>
+            </table>
 
+            <button ng-click="num=num+1">点我加1</button>
+            <div>{{num}}</div>
+
+            <button ng-click="btn()">点击隐藏</button>
+            <div ng-hide="bor">
+                <div><input type="text" ng-model="name"/></div>
+                <div><input type="text" ng-model="time" /></div>
+                <div>{{name +' 和 '+ time}}</div>
+            </div>
+
+            <form novalidate>
+                <input type="text" ng-model="user.firsname"/>
+                <input type="text" ng-model="user.lastname"/>
+                <button ng-click="reset()">reset</button>
+                <div>user为:{{user}}</div>
+                <div>master为:{{master}}</div>
+            </form>
+
+        </div>
+        <div ng-show="true">我是可见的</div>
+        <div ng-show="false">我是不可见的</div>
+
+        <form name="myForm" ng-controller="forms" novalidate>
+            <p>用户名：<br/>
+                <input type="text" name="text" ng-model="text" required/>
+                <span ng-show="myForm.text.$dirty && myForm.text.$invalid">
+                    <span ng-show="myForm.text.$error.required">必填项</span>
+                </span>
+            </p>
+            <p>邮箱：<br/>
+                <input type="email" name="email" ng-model="email" required/>
+                <span ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                    <span ng-show="myForm.email.$error.required">必填项</span>
+                    <span ng-show="myForm.email.$error.email">邮箱格式不合法</span>
+                </span>
+            </p>
+            <input type="submit" ng-disabled="myForm.email.$dirty && myForm.email.$invalid || myForm.text.$dirty && myForm.text.$invalid"/>
+
+        </form>
         <div>hello word!!</div>
     </div>
     <script>
@@ -81,7 +127,27 @@
         });
         app.controller('customersCtrl', function($scope, $http) {
             $http.get("package.json").success(function (response) {$scope.names = response.records;});
+            $http.get("package.json").success(function(response){$scope.tims = response.records; });
+            $scope.num=0;
+            $scope.name="huhuaijin";
+            $scope.time="600";
+            $scope.bor = false;
+            $scope.btn=function(){
+                $scope.bor = !$scope.bor;
+            };
+            $scope.master={firsname:"hu",lastname:"jin"};
+            $scope.reset = function(){
+                $scope.user=angular.copy($scope.master);
+            };
+            $scope.reset();
+
+
+
         });
+        app.controller('forms',function($scope){
+            $scope.text='huhuaijin';
+            $scope.email='11592790@qq.com';
+        })
     </script>
 </body>
 </html>
