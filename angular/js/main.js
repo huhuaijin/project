@@ -8,3 +8,16 @@ app.controller('btTable',function($scope){
     $scope.error = false;
     $scope.incomplete = false;
 });
+route.controller('routeConfig1',function($scope){
+     $scope.$route=$route;
+});
+route.controller('routeConfig2',function($scope){
+    $scope.$route=$route;
+});
+route.config(function($routeProvider){
+    $routeProvider
+        .when('/home',{templateUrl:'embedded.home.html',controller:'routeConfig1'})
+        .when('/about',{ templateUrl:'embedded.about.html',controller:'routeConfig2'})
+        .otherwise({redirectTo:'/home'})
+
+});
