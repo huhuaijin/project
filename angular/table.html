@@ -1,0 +1,12 @@
+<table class="table">
+    <thead>
+    <tr><th>Edit</th><th>first name</th><th>last name</th></tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="i in names">
+        <td><button class="btn "><span class="glyphicon glyphicon-pencil"></span>编辑</button></td>
+        <td>{{i.firstname}}</td>
+        <td>{{i.lastname}}</td>
+    </tr>
+    </tbody>
+</table>
