@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../framework/angular-1.5.6/angular.js"></script>
+    <script src="directive-index.js"></script>
+    <link rel="stylesheet" href="../../css/bootstrap.css"/>
+</head>
+<body>
+    <div ng-app="directiveApp">
+        <!--directive 基本应用-->
+        <hello>huhuaijin</hello>
+        <div hello>huhuaijin</div>
+        <div class="hello">huhuaijin</div>
+        <!-- directive:hello -->
+        <div>huhuaijin</div>
+        <div style="height: 50px;"></div>
+
+        <!-- templateCache 的应用 -->
+        <cache>cache</cache>
+        <div cache>cache</div>
+        <div class="cache">cache</div>
+        <!-- directive:cache -->
+        <div>cache</div>
+        <div style="height: 50px;"></div>
+
+        <!-- transclude的应用 -->
+        <clude>原页面内容 transclude </clude>
+        <div clude>原页面内容 transclude</div>
+        <div class="clude">原页面内容 transclude</div>
+        <!-- directive:clude -->
+        <div>原页面内容 transclude</div>
+        <div style="height:50px;"></div>
+
+        <!-- templateUrl -->
+        <temp>dirctive template url</temp>
+        <div temp>directive template url</div>
+        <div class="temp">directive template url</div>
+        <!-- directive:temp -->
+        <div>dirctive template url</div>
+
+
+
+    </div>
+</body>
+</html>

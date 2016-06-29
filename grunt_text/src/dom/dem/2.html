@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="list-group">
+                    <a class="active list-group-item">用户分类</a>
+                    <a ui-sref="project.nav2.list1" class="list-group-item">高端用户</a>
+                    <a ui-sref="project.nav2.list2" class="list-group-item">中端用户</a>
+                    <a ui-sref="project.nav2.list3" class="list-group-item">低端用户</a>
+                    <a ui-sref="project.nav2.list4" class="list-group-item">黑名单</a>
+                </div>
+                <div>
+                    <button class="btn btn-primary" ng-click="addUser()">新增用户</button>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div ui-view=""></div>
+            </div>
+        </div>
+    </div>
+</div>

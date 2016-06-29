@@ -1,0 +1,24 @@
+<div ng-controller="bookCtr3">
+    <p ng-class="{blue: iswarning}" class="col-sm-12">查看本行背景</p>
+    <div style="margin-bottom: 10px;">
+        <button class="btn btn-warning" ng-click="bgToggle()">点击变色</button>
+    </div>
+    <div class="panel panel-danger" ng-show="isdefault">
+        <div class="panel-heading">
+            <div class="panel-title">小金angular练习</div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    angular练习内容
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="text-center">
+                小金出品
+            </div>
+        </div>
+    </div>
+    <div><button class="btn btn-danger" ng-click="panelToggle()">显隐切换</button></div>
+</div>
